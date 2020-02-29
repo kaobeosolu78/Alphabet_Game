@@ -1,3 +1,5 @@
+#include "head.h"
+
 int main() {
 	storage store = storage();
 	std::string test;
