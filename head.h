@@ -8,17 +8,16 @@ class storage
 {
 public:
 	std::vector<std::string> alph, answers, spacing;
-	int play, win; 
-
+	int win; 
 	storage();
 	void process_response(std::string response);
 	friend std::ostream& operator<<(std::ostream& os, const storage& st);
 };
 
-storage::storage() {answers = {"","","","","","","","","","","","","","","","","","","","","","","","","",""}; play = 1; win = 0; alph = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}; }
+storage::storage() {answers = {"","","","","","","","","","","","","","","","","","","","","","","","","",""}; win = 0; alph = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}; }
 std::ostream& operator<<(std::ostream& os, const storage& st) {
 	for (int k = 0; k < static_cast<int>(st.alph.size())-1; k++) {
-		std::string spacing(15-static_cast<int>(st.alph[k].length()),' ');
+		std::string spacing(20-static_cast<int>(st.answers[k].length()),' ');
 		os << st.alph[k] <<  " " << st.answers[k] 
 		<< spacing << "|" << st.alph[k+1] << " " << st.answers[k+1];
 		os << "\n";
@@ -41,6 +40,7 @@ void storage::process_response(std::string response) {
 					} 
 				}
 				answers[j] = response.substr(1,static_cast<int>(response.length()));
+				win++;
 				std::cout << "\033[2J\033[1;1H";
 				return;
 			}
