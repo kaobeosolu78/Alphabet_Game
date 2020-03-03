@@ -2,8 +2,11 @@
 
 int main() {
 	storage store = storage();
-	std::string test;
-	std::cout << store;
-	std::cin >> test;
+	while (store.win != 26) {
+		std::string response;
+		std::cout << store;
+		std::cin >> response;
+		store.process_response(response);
+	}
 	return 1;
 }
